@@ -1,5 +1,5 @@
 body {
-  width: 100vw;
+  width: 97vw;
   background: black url('./img/background1.png') no-repeat fixed top;
   background-size: cover;
   color: #fff;
@@ -8,7 +8,7 @@ body {
 
 .app {
   width: 100vw;
-  margin-top: -25px;
+  margin-top: -33px;
   text-align: center;
   padding: 5%;
 }
@@ -60,7 +60,7 @@ body {
 /* Gallery */
 
 .gallery {
-  margin-top: 35px;
+  margin-top: 32px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
