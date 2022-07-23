@@ -127,3 +127,16 @@ body {
 .instruct{
   margin-top: 8px;
 }
+
+dialog {
+  z-index: 1;
+  margin-top: -13px;
+  border: 2px  lightgray solid;
+  border-radius: 8px;
+}
+
+.alert {
+  padding-top: 0;
+  margin-bottom: 0;
+  font-size: 18px;
+}

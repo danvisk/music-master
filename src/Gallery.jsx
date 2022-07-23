@@ -64,6 +64,7 @@ function Gallery({tracks, artist}) {
           fetch(FETCH_URL)
           .then(response => response.json())
           .then(json => {
+            if (json)
             target = json.results.trackmatches.track[0].url;});
           return (
             <div key={k} className='track'>
@@ -94,13 +95,3 @@ function Gallery({tracks, artist}) {
 }
 
 export default Gallery;
-
-//if (target.substring(0, 4)!=='http') {
-//  fetch(`${BASE_URL}track=${track.trackName}&api_key=${API_KEY}&limit=1&format=json`)
-//  .then(response => response.json())
-//  .then(json => {
-//    target = json.results.trackmatches.track[0].url;
-//    //
-//  });
-//  // target.substring(26, 29)
-//}
