@@ -31,9 +31,9 @@ function App() {
   const[res1, setResult1] = useState(null); 
   const[res2, setResult2] = useState(null);
   const[resConc, setResConc] = useState(null);
-  //const[flag, setFlag] = useState(0); 
+  const[artist, setArtist] = useState(''); 
 
-  function search(e) {
+  async function search(e) {
     e.preventDefault();
     //console.log('query:', query);
     setResConc(null);
@@ -43,33 +43,35 @@ function App() {
     const FETCH_URL1 = `https://info-getthekt.herokuapp.com/https://api.deezer.com/search/artist?q=${query}&index=0&limit=1`;
     
     
-    fetch(FETCH_URL1)
-    .then(response => response.json())
-    .then(json => {
-      const result = json.data[0];
-      setResult1(result);
-      console.log(result);
-      //if(result&&res2) setResConc(true);
-      if(!result) {
-        const dialogEl = document.getElementById('d1');
-        dialogEl.show();
-      }
-    });
-      
-    const FETCH_URL2 = `https://info-getthekt.herokuapp.com/https://itunes.apple.com/search?media=music&entity=song&limit=20&term=${query}`;
+    const response = await fetch(FETCH_URL1);
+    const json = await response.json();
+    const result = json.data[0];
+    setResult1(result);
+    console.log(result);
+    //setArtist(json.data[0].name);
+    if(!result) {
+      const dialogEl = document.getElementById('d1');
+      dialogEl.show();
+    }
+    setQuery('');
+
+    const FETCH_URL2 = `https://info-getthekt.herokuapp.com/https://itunes.apple.com/search?media=music&entity=song&limit=20&term=${result.name}`;
     function fetchSec(url) {
+      console.log(artist);
       fetch(url)
       .then(response => response.json())
       .then(json => {
-        const result = json.results;
-        setResult2(result);
-        console.log(result);
+        const result2 = json.results;
+        setResult2(result2);
+        console.log(result2);
         //if(result&&res2) setResConc(true);
       });
     }
     fetchSec(FETCH_URL2);
-    setQuery('');      
   }
+
+          
+  
      
     function processResults() { 
         if(res1 && res2) {
