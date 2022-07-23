@@ -12,6 +12,8 @@ function Gallery({tracks, artist}) {
   const [toID, setID] = useState(0);
   const [show, showMore] = useState(10);
 
+  //let theseTracks 
+
   function onClick(previewUrl) {
     let audio = new Audio(previewUrl);
     
@@ -49,7 +51,9 @@ function Gallery({tracks, artist}) {
     const BASE_URL = 'https://ws.audioscrobbler.com/2.0/?method=track.search&';
     const API_KEY = 'f21088bf9097b49ad4e7f487abab981e';
 
-  const slicedTracks = tracks.slice(0,show);
+  let slicedTracks = [];
+  if(tracks)
+    if(tracks) slicedTracks = tracks.slice(0,show);
   
   return ( 
     <div className='cont'>
@@ -64,7 +68,8 @@ function Gallery({tracks, artist}) {
           fetch(FETCH_URL)
           .then(response => response.json())
           .then(json => {
-            if (json)
+            if (json.results && json.results.trackmatches && 
+              json.results.trackmatches.track.length)
             target = json.results.trackmatches.track[0].url;});
           return (
             <div key={k} className='track'>
