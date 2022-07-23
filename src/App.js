@@ -35,7 +35,7 @@ function App() {
     console.log('query:', query);
     e.preventDefault();
 
-    const FETCH_URL1 = `http://0.0.0.0:8080/https://api.deezer.com/search/artist?q=${query}&index=0&limit=1`;
+    const FETCH_URL1 = `https://info-getthekt.herokuapp.com/https://api.deezer.com/search/artist?q=${query}&index=0&limit=1`;
   
     fetch(FETCH_URL1)
     .then(response => response.json())
@@ -45,7 +45,7 @@ function App() {
       console.log(result);
     });
       
-    const FETCH_URL2 = `http://0.0.0.0:8080/https://itunes.apple.com/search?media=music&entity=song&limit=20&term=${query}`;
+    const FETCH_URL2 = `https://info-getthekt.herokuapp.com/https://itunes.apple.com/search?media=music&entity=song&limit=20&term=${query}`;
     function fetchSec(url) {
       fetch(url)
       .then(response => response.json())
@@ -61,14 +61,16 @@ function App() {
   // (function fetchSec(FETCH_URL2) {
 
     let resConc = null;
-    if (res1 && res2) {
-      resConc = {
-        name: res1.name, 
-        fans: res1.nb_fan, 
-        img: res1.picture_medium,
-        genre: res2[0].primaryGenreName
+    if (res1 && res2) 
+      if(res2.length!==0) {
+        resConc = {
+          name: res1.name, 
+          fans: res1.nb_fan, 
+          img: res1.picture_medium,
+          genre: res2[0].primaryGenreName
+        }
       }
-    } 
+     
  
   return (
     <div className='app'>
