@@ -52,8 +52,7 @@ function Gallery({tracks, artist}) {
     const API_KEY = 'f21088bf9097b49ad4e7f487abab981e';
 
   let slicedTracks = [];
-  if(tracks)
-    if(tracks) slicedTracks = tracks.slice(0,show);
+  if(tracks) slicedTracks = tracks.slice(0,show);
   
   return ( 
     <div className='cont'>
